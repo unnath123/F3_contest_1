@@ -64,6 +64,7 @@ main{
 }
 .image1 img{
     height: 290px;
+    width:197px;
     border-radius: 10px;
 }
 .image1 {
@@ -102,3 +103,39 @@ letter-spacing: 0em;
 color:#FFFF;
 margin-top:25px;
 }
+
+
+.progress{
+    position: relative;
+    left:230%;
+    top:200%;
+    height: 10px;
+    width: 100px;
+    border: 10px solid #f4a261;
+    border-radius: 15px;
+}
+.progress .color{
+    position: absolute;
+    background-color: #ffffff;
+    width: 0px;
+    height: 10px;
+    border-radius: 15px;
+    animation: progres 4s infinite linear;    
+}
+@keyframes progres{
+    0%{
+      width: 0%;
+    }
+    25%{
+        width: 50%;
+    }
+    50%{
+        width: 75%;
+    }
+    75%{
+        width: 85%;
+    }
+    100%{
+        width: 100%;
+    }
+};
