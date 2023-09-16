@@ -2,9 +2,9 @@ const Api_key = "95751bfe";
 let searchele = document.getElementById("searchVal");
 
 function renderUi(array) {
-  const mainContainer = document.getElementById("m-cont");
+    const mainContainer = document.getElementById("m-cont");
   // console.log(array.Search[0])
-  for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
     const divEle = document.createElement("div");
     divEle.className = "item1";
     divEle.innerHTML = `
@@ -32,27 +32,36 @@ function removeLoader(){
     progress.remove();
 }
 
+function printError() {
+    const bodY = document.querySelector("body")
+    const errorContainer = document.createElement("div");
+    errorContainer.className  = "errorPrint";
+    errorContainer.innerHTML=`
+    <h1>Movie not found</h1>`
+
+    bodY.appendChild(errorContainer)
+}
 
 async function fetchDetails() {
-  //let SearchVal = searchele.value;
-   let SearchVal = "Jurassic"
-
+    let SearchVal = searchele.value;
+//    let SearchVal = "Jurassic"
     renderLoader()
-
     let response = await fetch(
     `http://www.omdbapi.com/?s=${SearchVal}&apikey=95751bfe`
   );
 
-  let result = await response.json();
+    let result = await response.json();
+    removeLoader()
 
-  removeLoader()
-
-//   let brr = result.Search;
-  console.log(result);
-
-   renderUi(result)
+    if(result.Response === 'False'){
+        printError()
+    }
+    else{
+        console.log(result);
+        renderUi(result)
+    }
 }
 
- document.getElementById("submit").addEventListener("click", fetchDetails);
+    document.getElementById("submit").addEventListener("click", fetchDetails);
 
 //fetchDetails();
